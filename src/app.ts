@@ -1,6 +1,5 @@
 import express, { Request, Response, NextFunction } from "express";
 import createError, { HttpError } from "http-errors";
-import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 
@@ -13,7 +12,6 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
@@ -36,7 +34,7 @@ app.use(function (
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.send("error");
 });
 
-module.exports = app;
+export default app;

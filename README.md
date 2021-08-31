@@ -8,7 +8,7 @@
 * `npm install --save-dev typescript @types/cookie-parser @types/http-errors @types/morgan @types/node ts-node`. Installs necessary dependencies in types for express.
 * `npx tsc --init` to create tsconfig file.
 * create a `src` folder and move `/routes` and `app.js` into it. Delete `/views` since we dont need it.
->Note: since we ignoring the views, change `res.render` to `res.send("hello world")` in `/routes/index.ts`
+>Note: since we ignoring the views, change `res.render` to `res.send("text")`
 * Change the tsconfig's configs.
 * Rename all the extensions in `/src` from `.js` to `.ts`.
 * Once renamed, change all imports from `require` to `import` syntax.
@@ -16,4 +16,36 @@
 ```diff
 - var app = require('../app');
 + var app = require('../dist/app');
+```
+
+## Starting server
+* `npm start` will start server at port 3000.
+>Note: will just compile the .ts files and starts the server. **DOES NOT WATCH FOR FILE CHANGES** 
+
+## Debugging typescript
+* Create a `.vscode/launch.json` file if working with vsc and copy below content. [More info](https://code.visualstudio.com/docs/typescript/typescript-debugging)
+* Intentionally `/.vscode` folder was not git ignore. can see launch.json
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/index.ts",
+      "preLaunchTask": "tsc: build - tsconfig.json",
+      "outFiles": [
+        "${workspaceFolder}/dist/**/*.js"
+      ]
+    }
+  ]
+}
 ```
