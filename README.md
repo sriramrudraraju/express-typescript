@@ -25,27 +25,4 @@
 ## Debugging typescript
 * Create a `.vscode/launch.json` file if working with vsc and copy below content. [More info](https://code.visualstudio.com/docs/typescript/typescript-debugging)
 * Intentionally `/.vscode` folder was not git ignore. can see launch.json
-
-```json
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "program": "${workspaceFolder}/index.ts",
-      "preLaunchTask": "tsc: build - tsconfig.json",
-      "outFiles": [
-        "${workspaceFolder}/dist/**/*.js"
-      ]
-    }
-  ]
-}
-```
+* Add a debugger point in the file and press `f5` to start server in debugger mode.
